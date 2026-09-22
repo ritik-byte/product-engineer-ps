@@ -8,6 +8,8 @@ dist/
 build/
 out/
 .next/
+.vite/
+
 
 # Environment files
 .env
