@@ -1,0 +1,39 @@
+{
+  "name": "product-engineer-ps",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Caygnus Problem 3: Reconnecting Real-Time Feed",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run build --workspace=@caygnus/shared && concurrently -n \"api,web\" -c \"cyan,magenta\" \"npm run dev:api\" \"npm run dev:web\"",
+    "dev:api": "npm run dev --workspace=@caygnus/api",
+    "dev:web": "npm run dev --workspace=@caygnus/web",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:unit": "npm run test:unit --workspace=@caygnus/api && npm run test:unit --workspace=@caygnus/web",
+    "test:integration": "npm run test:integration --workspace=@caygnus/api",
+    "test:e2e": "npm run test:e2e --workspace=@caygnus/api",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "keywords": [
+    "realtime",
+    "reconnection",
+    "deduplication",
+    "websocket",
+    "fastify",
+    "react"
+  ],
+  "author": "Ritik Vishwakarma",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "concurrently": "^10.0.5",
+    "prisma": "^5.22.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8"
+  }
+}

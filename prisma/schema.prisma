@@ -1,0 +1,21 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Update {
+  id        String   @id
+  roomId    String   @map("room_id")
+  sequence  Int
+  message   String
+  author    String   @default("Anonymous")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([roomId, sequence], name: "room_sequence_unique")
+  @@index([roomId, sequence(sort: Asc)])
+  @@map("updates")
+}
